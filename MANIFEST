@@ -1,0 +1,8 @@
+Changes
+lib/Amce/CNA.pm
+Makefile.PL
+MANIFEST			This list of files
+README
+t/basic.t
+t/pod-coverage.t
+t/pod.t
