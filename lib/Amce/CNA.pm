@@ -11,9 +11,9 @@ versino 00.61
 
 =cut
 
-our $VERSION = '0.061';
-
 package Amce::CNA;
+
+our $VERSION = '0.061';
 
 use Class::ISA;
 
@@ -73,12 +73,10 @@ sub _populate_methods {
 
   my $return = {};
 
-  ## no critic (NoStrict, ConditionalDeclarations)
-  my $stash = do {
-    no strict 'refs';
+  my $stash = do { ## no critic (ConditionalDeclarations)
+    no strict 'refs'; ## no critic (NoStrict)
     \%{"$pkg\::"};
   }
-  ## use critic
 
   for my $name (keys %$stash) {
     next if $name eq uc $name;
