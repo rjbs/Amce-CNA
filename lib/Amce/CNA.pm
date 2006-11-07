@@ -1,3 +1,5 @@
+use strict;
+use warnings;
 
 =head1 NAME
 
@@ -5,16 +7,13 @@ Amce::CNA - a moer tolernat verison of mehtod location
 
 =head1 VERSION
 
-versino 00.6
+versino 00.61
 
 =cut
 
-our $VERSION = '0.06';
+our $VERSION = '0.061';
 
 package Amce::CNA;
-
-use strict;
-use warnings;
 
 use Class::ISA;
 
@@ -74,8 +73,12 @@ sub _populate_methods {
 
   my $return = {};
 
-  no strict 'refs';
-  my $stash = \%{"$pkg\::"};
+  ## no critic (NoStrict, ConditionalDeclarations)
+  my $stash = do {
+    no strict 'refs';
+    \%{"$pkg\::"};
+  }
+  ## use critic
 
   for my $name (keys %$stash) {
     next if $name eq uc $name;
