@@ -1,0 +1,10 @@
+Changes
+lib/Amce/CNA.pm
+Makefile.PL
+LICENSE
+MANIFEST			This list of files
+README
+t/basic.t
+t/pod-coverage.t
+t/pod.t
+t/perl-critic.t
