@@ -80,7 +80,7 @@ sub _populate_methods {
   my $stash = do { ## no critic (ConditionalDeclarations)
     no strict 'refs'; ## no critic (NoStrict)
     \%{"$pkg\::"};
-  }
+  };
 
   for my $name (keys %$stash) {
     next if $name eq uc $name;
