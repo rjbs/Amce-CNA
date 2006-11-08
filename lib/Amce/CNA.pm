@@ -41,6 +41,10 @@ And then...
 
 O NOES!
 
+=head1 DESCRIPTION
+
+This modlue makes it eaiser for dislexics to wriet workign Perl.
+
 =cut
 
 my %methods;
@@ -48,7 +52,7 @@ my %methods;
 sub _acroname {
   my ($name) = @_;
 
-  my $acroname = join '', grep { $_ ne '_' } sort split //, $name;
+  my $acroname = join q{}, grep { $_ ne '_' } sort split //, $name;
 }
 
 sub __can {
@@ -93,16 +97,17 @@ my $error_msg = qq{Can\'t locate object method "%s" via package "%s" } .
                 qq{at %s line %d.\n};
 
 use vars qw($AUTOLOAD);
-sub AUTOLOAD {
+sub AUTOLOAD { ## no critic Autoload
   my ($class, $method) = $AUTOLOAD =~ /^(.+)::([^:]+)$/;
 
   if (my $code = __can($class, $method)) {
     return $code->(@_);
   }
 
-  die "AUTOLOAD not called as method" unless @_ >= 1;
+  Carp::croak "AUTOLOAD not called as method" unless @_ >= 1;
 
   my ($callpack, $callfile, $callline) = caller;
+  ## no critic Carp
   die sprintf $error_msg, $method, ((ref $_[0])||$_[0]), $callfile, $callline;
 }
 
@@ -122,6 +127,10 @@ ueQit ysib.lpos
 =item L<Symbol::Approx::Sub>
 
 =back
+
+=head1 AUTHOR
+
+Ricardo SIGNES <rjbs@cpan.org>
 
 =head1 COPYRIGHT
 

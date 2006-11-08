@@ -1,7 +1,7 @@
 # This Makefile is for the Amce::CNA extension to perl.
 #
 # It was generated automatically by MakeMaker version
-# 6.30 (Revision: Revision: 4535 ) from the contents of
+# 6.31 (Revision: 19606) from the contents of
 # Makefile.PL. Don't edit this file, edit Makefile.PL instead.
 #
 #       ANY CHANGES MADE HERE WILL BE LOST!
@@ -10,6 +10,7 @@
 #
 #   MakeMaker Parameters:
 
+#     LICENSE => q[perl]
 #     NAME => q[Amce::CNA]
 #     PREREQ_PM => { Sub::Exporter=>q[0.96], Class::ISA=>q[0] }
 #     VERSION_FROM => q[lib/Amce/CNA.pm]
@@ -28,6 +29,8 @@ CCCDLFLAGS =
 CCDLFLAGS =  
 DLEXT = bundle
 DLSRC = dl_dlopen.xs
+EXE_EXT = 
+FULL_AR = /usr/bin/ar
 LD = env MACOSX_DEPLOYMENT_TARGET=10.3 cc
 LDDLFLAGS =  -bundle -undefined dynamic_lookup -L/usr/local/lib
 LDFLAGS =  -L/usr/local/lib
@@ -35,13 +38,11 @@ LIBC = /usr/lib/libc.dylib
 LIB_EXT = .a
 OBJ_EXT = .o
 OSNAME = darwin
-OSVERS = 8.6.2
+OSVERS = 8.7.1
 RANLIB = ranlib
 SITELIBEXP = /usr/local/lib/perl5/site_perl/5.8.8
 SITEARCHEXP = /usr/local/lib/perl5/site_perl/5.8.8/darwin-2level
 SO = dylib
-EXE_EXT = 
-FULL_AR = /usr/bin/ar
 VENDORARCHEXP = 
 VENDORLIBEXP = 
 
@@ -52,11 +53,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = Amce::CNA
 NAME_SYM = Amce_CNA
-VERSION = 0.05
+VERSION = 0.061
 VERSION_MACRO = VERSION
-VERSION_SYM = 0_05
+VERSION_SYM = 0_061
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 0.05
+XS_VERSION = 0.061
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -93,6 +94,10 @@ INSTALLVENDORBIN =
 DESTINSTALLVENDORBIN = $(DESTDIR)$(INSTALLVENDORBIN)
 INSTALLSCRIPT = /usr/local/bin
 DESTINSTALLSCRIPT = $(DESTDIR)$(INSTALLSCRIPT)
+INSTALLSITESCRIPT = /usr/local/bin
+DESTINSTALLSITESCRIPT = $(DESTDIR)$(INSTALLSITESCRIPT)
+INSTALLVENDORSCRIPT = 
+DESTINSTALLVENDORSCRIPT = $(DESTDIR)$(INSTALLVENDORSCRIPT)
 INSTALLMAN1DIR = /usr/local/share/man/man1
 DESTINSTALLMAN1DIR = $(DESTDIR)$(INSTALLMAN1DIR)
 INSTALLSITEMAN1DIR = /usr/local/share/man/man1
@@ -127,13 +132,14 @@ PERM_RW = 644
 PERM_RWX = 755
 
 MAKEMAKER   = /usr/local/lib/perl5/5.8.8/ExtUtils/MakeMaker.pm
-MM_VERSION  = 6.30
-MM_REVISION = Revision: 4535 
+MM_VERSION  = 6.31
+MM_REVISION = 19606
 
 # FULLEXT = Pathname for extension directory (eg Foo/Bar/Oracle).
 # BASEEXT = Basename part of FULLEXT. May be just equal FULLEXT. (eg Oracle)
 # PARENT_NAME = NAME without BASEEXT and no trailing :: (eg Foo::Bar)
 # DLBASE  = Basename part of dynamic library. May be just equal BASEEXT.
+MAKE = make
 FULLEXT = Amce/CNA
 BASEEXT = CNA
 PARENT_NAME = Amce
@@ -179,13 +185,13 @@ PM_TO_BLIB = lib/Amce/CNA.pm \
 
 
 # --- MakeMaker platform_constants section:
-MM_Unix_VERSION = 1.50
+MM_Unix_VERSION = 1.51
 PERL_MALLOC_DEF = -DPERL_EXTMALLOC_DEF -Dmalloc=Perl_malloc -Dfree=Perl_mfree -Drealloc=Perl_realloc -Dcalloc=Perl_calloc
 
 
 # --- MakeMaker tool_autosplit section:
 # Usage: $(AUTOSPLITFILE) FileToSplit AutoDirToSplitInto
-AUTOSPLITFILE = $(ABSPERLRUN)  -e 'use AutoSplit;  autosplit($$ARGV[0], $$ARGV[1], 0, 1, 1)'
+AUTOSPLITFILE = $(ABSPERLRUN)  -e 'use AutoSplit;  autosplit($$ARGV[0], $$ARGV[1], 0, 1, 1)' --
 
 
 
@@ -211,7 +217,7 @@ ECHO = echo
 ECHO_N = echo -n
 UNINST = 0
 VERBINST = 0
-MOD_INSTALL = $(ABSPERLRUN) -MExtUtils::Install -e 'install({@ARGV}, '\''$(VERBINST)'\'', 0, '\''$(UNINST)'\'');'
+MOD_INSTALL = $(ABSPERLRUN) -MExtUtils::Install -e 'install({@ARGV}, '\''$(VERBINST)'\'', 0, '\''$(UNINST)'\'');' --
 DOC_INSTALL = $(ABSPERLRUN) "-MExtUtils::Command::MM" -e perllocal_install
 UNINSTALL = $(ABSPERLRUN) "-MExtUtils::Command::MM" -e uninstall
 WARN_IF_OLD_PACKLIST = $(ABSPERLRUN) "-MExtUtils::Command::MM" -e warn_if_old_packlist
@@ -242,7 +248,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = Amce-CNA
-DISTVNAME = Amce-CNA-0.05
+DISTVNAME = Amce-CNA-0.061
 
 
 # --- MakeMaker macro section:
@@ -462,18 +468,19 @@ realclean purge ::  clean realclean_subdirs
 # --- MakeMaker metafile section:
 metafile : create_distdir
 	$(NOECHO) $(ECHO) Generating META.yml
-	$(NOECHO) $(ECHO) '# http://module-build.sourceforge.net/META-spec.html' > META_new.yml
-	$(NOECHO) $(ECHO) '#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#' >> META_new.yml
-	$(NOECHO) $(ECHO) 'name:         Amce-CNA' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version:      0.05' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version_from: lib/Amce/CNA.pm' >> META_new.yml
-	$(NOECHO) $(ECHO) 'installdirs:  site' >> META_new.yml
-	$(NOECHO) $(ECHO) 'requires:' >> META_new.yml
+	$(NOECHO) $(ECHO) '--- #YAML:1.0' > META_new.yml
+	$(NOECHO) $(ECHO) 'name:                Amce-CNA' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version:             0.061' >> META_new.yml
+	$(NOECHO) $(ECHO) 'abstract:            ~' >> META_new.yml
+	$(NOECHO) $(ECHO) 'license:             perl' >> META_new.yml
+	$(NOECHO) $(ECHO) 'generated_by:        ExtUtils::MakeMaker version 6.31' >> META_new.yml
+	$(NOECHO) $(ECHO) 'distribution_type:   module' >> META_new.yml
+	$(NOECHO) $(ECHO) 'requires:     ' >> META_new.yml
 	$(NOECHO) $(ECHO) '    Class::ISA:                    0' >> META_new.yml
 	$(NOECHO) $(ECHO) '    Sub::Exporter:                 0.96' >> META_new.yml
-	$(NOECHO) $(ECHO) '' >> META_new.yml
-	$(NOECHO) $(ECHO) 'distribution_type: module' >> META_new.yml
-	$(NOECHO) $(ECHO) 'generated_by: ExtUtils::MakeMaker version 6.30' >> META_new.yml
+	$(NOECHO) $(ECHO) 'meta-spec:' >> META_new.yml
+	$(NOECHO) $(ECHO) '    url:     http://module-build.sourceforge.net/META-spec-v1.2.html' >> META_new.yml
+	$(NOECHO) $(ECHO) '    version: 1.2' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 
 
@@ -504,7 +511,7 @@ veryclean : realclean
 
 dist : $(DIST_DEFAULT) $(FIRST_MAKEFILE)
 	$(NOECHO) $(ABSPERLRUN) -l -e 'print '\''Warning: Makefile possibly out of date with $(VERSION_FROM)'\''' \
-	  -e '    if -e '\''$(VERSION_FROM)'\'' and -M '\''$(VERSION_FROM)'\'' < -M '\''$(FIRST_MAKEFILE)'\'';'
+	  -e '    if -e '\''$(VERSION_FROM)'\'' and -M '\''$(VERSION_FROM)'\'' < -M '\''$(FIRST_MAKEFILE)'\'';' --
 
 tardist : $(DISTVNAME).tar$(SUFFIX)
 	$(NOECHO) $(NOOP)
@@ -567,14 +574,14 @@ ci :
 # --- MakeMaker distmeta section:
 distmeta : create_distdir metafile
 	$(NOECHO) cd $(DISTVNAME) && $(ABSPERLRUN) -MExtUtils::Manifest=maniadd -e 'eval { maniadd({q{META.yml} => q{Module meta-data (added by MakeMaker)}}) } ' \
-	  -e '    or print "Could not add META.yml to MANIFEST: $${'\''@'\''}\n"'
+	  -e '    or print "Could not add META.yml to MANIFEST: $${'\''@'\''}\n"' --
 
 
 
 # --- MakeMaker distsignature section:
 distsignature : create_distdir
 	$(NOECHO) cd $(DISTVNAME) && $(ABSPERLRUN) -MExtUtils::Manifest=maniadd -e 'eval { maniadd({q{SIGNATURE} => q{Public-key signature (added by MakeMaker)}}) } ' \
-	  -e '    or print "Could not add SIGNATURE to MANIFEST: $${'\''@'\''}\n"'
+	  -e '    or print "Could not add SIGNATURE to MANIFEST: $${'\''@'\''}\n"' --
 	$(NOECHO) cd $(DISTVNAME) && $(TOUCH) SIGNATURE
 	cd $(DISTVNAME) && cpansign -s
 
@@ -627,7 +634,7 @@ pure_site_install ::
 		$(INST_LIB) $(DESTINSTALLSITELIB) \
 		$(INST_ARCHLIB) $(DESTINSTALLSITEARCH) \
 		$(INST_BIN) $(DESTINSTALLSITEBIN) \
-		$(INST_SCRIPT) $(DESTINSTALLSCRIPT) \
+		$(INST_SCRIPT) $(DESTINSTALLSITESCRIPT) \
 		$(INST_MAN1DIR) $(DESTINSTALLSITEMAN1DIR) \
 		$(INST_MAN3DIR) $(DESTINSTALLSITEMAN3DIR)
 	$(NOECHO) $(WARN_IF_OLD_PACKLIST) \
@@ -640,7 +647,7 @@ pure_vendor_install ::
 		$(INST_LIB) $(DESTINSTALLVENDORLIB) \
 		$(INST_ARCHLIB) $(DESTINSTALLVENDORARCH) \
 		$(INST_BIN) $(DESTINSTALLVENDORBIN) \
-		$(INST_SCRIPT) $(DESTINSTALLSCRIPT) \
+		$(INST_SCRIPT) $(DESTINSTALLVENDORSCRIPT) \
 		$(INST_MAN1DIR) $(DESTINSTALLVENDORMAN1DIR) \
 		$(INST_MAN3DIR) $(DESTINSTALLVENDORMAN3DIR)
 
@@ -760,7 +767,7 @@ testdb_static :: testdb_dynamic
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd:
-	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="0,05,0,0">' > $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="0,061,0,0">' > $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <TITLE>$(DISTNAME)</TITLE>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <ABSTRACT></ABSTRACT>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR></AUTHOR>' >> $(DISTNAME).ppd
@@ -768,7 +775,7 @@ ppd:
 	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Class-ISA" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Sub-Exporter" VERSION="0,96,0,0" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <OS NAME="$(OSNAME)" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="darwin-2level" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="darwin-2level-5.8" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <CODEBASE HREF="" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    </IMPLEMENTATION>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '</SOFTPKG>' >> $(DISTNAME).ppd
@@ -777,7 +784,7 @@ ppd:
 # --- MakeMaker pm_to_blib section:
 
 pm_to_blib : $(TO_INST_PM)
-	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', '\''$(PM_FILTER)'\'')' \
+	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', '\''$(PM_FILTER)'\'')' -- \
 	  lib/Amce/CNA.pm blib/lib/Amce/CNA.pm 
 	$(NOECHO) $(TOUCH) pm_to_blib
 
