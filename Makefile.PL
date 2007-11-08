@@ -5,6 +5,7 @@ use 5.006;
 WriteMakefile(
   NAME          => 'Amce::CNA',
   VERSION_FROM  => 'lib/Amce/CNA.pm',
+  ABSTRACT_FROM => 'lib/Amce/CNA.pm',
   AUTHOR        => 'Ricardo SIGNES <rjbs@cpan.org>',
   (eval { ExtUtils::MakeMaker->VERSION(6.21) } ? (LICENSE => 'perl') : ()),
   PREREQ_PM     => {

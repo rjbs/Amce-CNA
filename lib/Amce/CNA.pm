@@ -7,13 +7,13 @@ Amce::CNA - a moer tolernat verison of mehtod location
 
 =head1 VERSION
 
-versino 00.63
+versino 0.064
 
 =cut
 
 package Amce::CNA;
 
-our $VERSION = '0.063';
+our $VERSION = '0.064';
 
 use Class::ISA;
 
