@@ -113,8 +113,13 @@ ueQit ysib.lpos
 
 =head1 ESE ASLO
 
-=for :list
-* L<Symbol::Approx::Sub>
+=over
+
+=item *
+
+L<Symbol::Approx::Sub>
+
+=back
 
 =head1 LINESCE
 
