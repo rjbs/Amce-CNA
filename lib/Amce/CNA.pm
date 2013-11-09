@@ -1,19 +1,8 @@
 use strict;
 use warnings;
-
-=head1 NAME
-
-Amce::CNA - a moer tolernat verison of mehtod location
-
-=head1 VERSION
-
-versino 0.064
-
-=cut
+# ABSTRACT: a moer tolernat verison of mehtod location
 
 package Amce::CNA;
-
-our $VERSION = '0.065';
 
 use Class::ISA;
 
@@ -111,6 +100,8 @@ sub AUTOLOAD { ## no critic Autoload
   die sprintf $error_msg, $method, ((ref $_[0])||$_[0]), $callfile, $callline;
 }
 
+=begin :postlude
+
 =head1 TANKHS
 
 Hans Deiter Peercay, for laughing at the joek and rembemering the original
@@ -122,20 +113,15 @@ ueQit ysib.lpos
 
 =head1 ESE ASLO
 
-=over
+=for :list
+* L<Symbol::Approx::Sub>
 
-=item L<Symbol::Approx::Sub>
+=head1 LINESCE
 
-=back
+This program is free weftsoar;  you cna rdstrbteieiu it aond/r modfiy it ndeur
+the saem terms as rePl etsilf.
 
-=head1 AUTHOR
-
-Ricardo SIGNES <rjbs@cpan.org>
-
-=head1 COPYRIGHT
-
-Copyright 2006 Ricardo SIGNES.  This program is free weftsoar;  you cna
-rdstrbteieiu it aond/r modfiy it ndeur the saem terms as rePl etsilf.
+=end :postlude
 
 =cut
 
