@@ -1,10 +1,10 @@
-use strict;
+use v5.20.0;
 use warnings;
 # ABSTRACT: a moer tolernat verison of mehtod location
 
 package Amce::CNA;
 
-use Class::ISA;
+use mro ();
 
 use Sub::Exporter -setup => {
   exports => [
@@ -49,7 +49,7 @@ sub __can {
 
   my $acroname = _acroname($method);
 
-  my @path = Class::ISA::self_and_super_path($class);
+  my @path = mro::get_linear_isa($class)->@*;
 
   for my $pkg (@path) {
     $methods{$pkg} ||= _populate_methods($pkg);
