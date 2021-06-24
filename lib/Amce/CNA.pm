@@ -6,6 +6,10 @@ package Amce::CNA;
 
 use mro ();
 
+# This experiment lands in 5.24 so it is safe to use from v5.20 onward.
+# -- rjbs, 2021-06-24
+use if $] < 5.024, experimental => 'postderef';
+
 use Sub::Exporter -setup => {
   exports => [
     qw(AUTOLOAD),
